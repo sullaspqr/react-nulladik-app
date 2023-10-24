@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="border">
+      Dobozok - App
+      <BoxComponent hatterSzin="red" kezdetiSzamlalo={0} />
+      <BoxComponent hatterSzin="blue" kezdetiSzamlalo={1} />
+      <BoxComponent hatterSzin="green" kezdetiSzamlalo={2} />
+    </div>
+  );
+}
+
+function BoxComponent(props) {
+  const [szamlaloAllapota, ujSzamlaloAllapotBeallitasa] = useState(props.kezdetiSzamlalo);
+  return (
+<div
+      style={{
+        width: "200px",
+        height: "200px",
+        backgroundColor: props.hatterSzin,
+      }}
+      className="p-2 m-5 rounded"
+      onClick={() => {
+        ujSzamlaloAllapotBeallitasa((elozoAllapot) => elozoAllapot + 1);
+      }}
+    >
+      <h1>{szamlaloAllapota}</h1>
     </div>
   );
 }
